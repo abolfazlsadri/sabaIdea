@@ -58,9 +58,12 @@ class SortController {
         }
     }
 
-    private function sorter()
+    private function sorter($boards=NULL)
     {
-        $boards = $this->boards;
+        if (!$boards){
+            $boards = $this->boards;
+        }
+        
 
         usort($boards, function($a, $b) {
             return $a['Arrival'] !== $b['Departure'];
@@ -80,7 +83,7 @@ class SortController {
         }
     
         if ($needSort) {
-            return sortBoards($boards);
+            return sorter($boards);
         }
     
         $response['status_code_header'] = 'HTTP/1.1 200 OK';
