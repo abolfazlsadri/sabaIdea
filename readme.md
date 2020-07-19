@@ -46,7 +46,7 @@ Your task is to generate an api that can sort the route and any movement path Le
 ### Installation
  
  1. Clone this repository by running this on your terminal: `git clone https://github.com/abolfazlsadri/URL-Shortener.git`
- 2. Navigate to the project's directory with: `cd SABA`
+ 2. Navigate to the project's directory with: `cd sabaIdea`
  3. Run `composer install` to install dependencies
  4. Run `php -S 127.0.0.1:8000 -t public` to start the server on a local host
  5. GET request to `http://127.0.0.1:8000/sort`
