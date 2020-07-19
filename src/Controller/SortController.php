@@ -58,39 +58,33 @@ class SortController {
         }
     }
 
-    private function sorter($boards=NULL)
+    private function sorter(array $boards=NULL): array
     {
-        if (!$boards){
-            $boards = $this->boards;
-        }
+        $boards = $boards ? $boards : $this->boards;
 
         usort($boards, function($a, $b) {
             return $a['Arrival'] !== $b['Departure'];
         });
     
-        $needSort = false;
-    
+        $sorted = false;
+
         for ($i = 0; $i < count($boards); $i++) {
-            if (empty($boards[$i + 1])) {
-                break;
-            }
+            if (empty($boards[$i + 1])) break;
     
             if ($boards[$i]['Arrival'] !== $boards[$i + 1]['Departure']) {
-                $needSort = true;
+                $sorted = true;
                 break;
             }
         }
     
-        if ($needSort) {
-            return sorter($boards);
-        }
+        if ($sorted) return sorter($boards);
     
         $response['status_code_header'] = 'HTTP/1.1 200 OK';
         $response['body'] = json_encode($boards);
         return $response;
     }
 
-    private function notFoundResponse()
+    private function notFoundResponse(): array
     {
         $response['status_code_header'] = 'HTTP/1.1 404 Not Found';
         $response['body'] = null;
