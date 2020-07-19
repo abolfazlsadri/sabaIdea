@@ -63,7 +63,6 @@ class SortController {
         if (!$boards){
             $boards = $this->boards;
         }
-        
 
         usort($boards, function($a, $b) {
             return $a['Arrival'] !== $b['Departure'];
